@@ -26,19 +26,10 @@ function ContextProvider({children}) {
     
     function addToCart(img) {
         cartItems.includes(img) ? alert('item already added') : setCartItems([...cartItems, img])
-        const updatedArr = allPhotos.map(photo => {
-            if(photo.id === img.id) {
-                if(!photo.isAdded) {
-                    photo.isAdded = true
-                }            
-            }
-            return photo
-        })
-        setAllPhotos(updatedArr)
     }
     
     return (
-        <Context.Provider value={{allPhotos, toggleFavorite, addToCart}}>
+        <Context.Provider value={{allPhotos, toggleFavorite, addToCart, cartItems}}>
             {children}
         </Context.Provider>
     )
