@@ -5,15 +5,15 @@ import {Context} from "../Context"
 
 function Image({className, img}) {
     const [hovered, setHovered] = useState(false)
-    const {toggleFavorite, addToCart, cartItems} = useContext(Context)
+    const {toggleFavorite, updateCart, cartItems} = useContext(Context)
     
     const heartIcon = img.isFavorite ? 
         <i className="ri-heart-fill favorite" onClick={() => toggleFavorite(img.id)}></i> : 
         hovered && <i className="ri-heart-line favorite" onClick={() => toggleFavorite(img.id)}></i> 
     
     const cartIcon = cartItems.includes(img) ? 
-        <i className="ri-shopping-cart-fill cart"></i> : 
-        hovered && <i className="ri-add-circle-line cart" onClick={() => addToCart(img)}></i>
+        <i className="ri-shopping-cart-fill cart" onClick={() => updateCart(img)}></i> : 
+        hovered && <i className="ri-add-circle-line cart" onClick={() => updateCart(img)}></i>
     
     
     return (

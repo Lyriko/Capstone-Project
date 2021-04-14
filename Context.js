@@ -24,12 +24,15 @@ function ContextProvider({children}) {
         setAllPhotos(updatedArr)
     }
     
-    function addToCart(img) {
-        cartItems.includes(img) ? alert('item already added') : setCartItems([...cartItems, img])
+    function updateCart(img) {
+        cartItems.includes(img) ? 
+        setCartItems(cartItems.filter(img => !cartItems.includes(img))) : 
+        setCartItems([...cartItems, img])
     }
     
+    
     return (
-        <Context.Provider value={{allPhotos, toggleFavorite, addToCart, cartItems}}>
+        <Context.Provider value={{allPhotos, toggleFavorite, updateCart, cartItems}}>
             {children}
         </Context.Provider>
     )
