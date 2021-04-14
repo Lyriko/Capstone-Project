@@ -1,3 +1,4 @@
+import { element } from "prop-types"
 import React, {useState, useEffect} from "react"
 
 const Context = React.createContext()
@@ -25,8 +26,8 @@ function ContextProvider({children}) {
     }
     
     function updateCart(img) {
-        cartItems.includes(img) ? 
-        setCartItems(cartItems.filter(img => !cartItems.includes(img))) : 
+        cartItems.includes(img) ?
+        setCartItems(prevItems => prevItems.filter(item => item.id != img.id)) :
         setCartItems([...cartItems, img])
     }
     
