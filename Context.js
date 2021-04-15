@@ -7,6 +7,8 @@ function ContextProvider({children}) {
     const [allPhotos, setAllPhotos] = useState([])
     const [cartItems, setCartItems] = useState([])    
     const [totalCost, setTotalCost] = useState(0.00)
+    const [ordering, setOrdering] = useState(false)
+    const [ordered, setOredered] = useState(false)
     
     const url = "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json"
     useEffect(() => {
@@ -30,8 +32,7 @@ function ContextProvider({children}) {
         cartItems.includes(img) 
             ?
             (setCartItems(prevItems => prevItems.filter(item => item.id != img.id)), 
-            setTotalCost(prevCost => prevCost = 
-                                            (cartItems.length - 1) * 5.99)) 
+            setTotalCost(prevCost => prevCost = (cartItems.length - 1) * 5.99)) 
                 :
                 (setCartItems([...cartItems, img]),
                 setTotalCost(prevCost => prevCost = 
@@ -42,8 +43,22 @@ function ContextProvider({children}) {
                                                         prevCost = (cartItems.length + 1) * 5.99))
     }
     
+    function order(){
+        setOrdering(true)
+        setTimeout(()=>{
+            setOrdering(false)
+            setCartItems([])
+            setTotalCost(0.00)
+            setOredered(true)
+        }, 1000)
+    }
+    
+    function dissmissOrdered(){
+        setOredered(false)
+    }
+    
     return (
-        <Context.Provider value={{allPhotos, toggleFavorite, updateCart, cartItems, totalCost}}>
+        <Context.Provider value={{allPhotos, toggleFavorite, updateCart, cartItems, totalCost, order, ordering, ordered, dissmissOrdered}}>
             {children}
         </Context.Provider>
     )
