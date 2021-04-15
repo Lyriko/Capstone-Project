@@ -22,11 +22,13 @@ function Cart() {
                             <br />
                         </div> 
                         : null}
-                {cartItems.length == 0 ? 
+                {cartItems.length == 0 
+                    ? 
                     <button onClick={() => window.location.href = '/'}>
                         cart empty <br /><br /> 
                         back to Main?
-                    </button> :
+                    </button> 
+                    :
                 <button onClick={() => order()}>{ordering ? 'ordering...' : 'Place Order'}</button>}
             </div>
         </main>
