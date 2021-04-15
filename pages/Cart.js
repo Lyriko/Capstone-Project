@@ -15,8 +15,18 @@ function Cart() {
             {cartItemElements}
             <p className="total-cost">Total: {totalCost} </p>
             <div className="order-button">
-                {ordered ? <div><p>Order sucessfull</p> <button onClick={dissmissOrdered}>dissmiss</button><br /></div> : null}
-                {cartItems.length == 0 ? <button onClick={() => window.location.href = '/'}>cart empty <br /><br /> back to Main?</button> :
+                {ordered ? 
+                        <div>
+                            <p>Order sucessfull</p> 
+                            <button onClick={dissmissOrdered}>dissmiss</button>
+                            <br />
+                        </div> 
+                        : null}
+                {cartItems.length == 0 ? 
+                    <button onClick={() => window.location.href = '/'}>
+                        cart empty <br /><br /> 
+                        back to Main?
+                    </button> :
                 <button onClick={() => order()}>{ordering ? 'ordering...' : 'Place Order'}</button>}
             </div>
         </main>
